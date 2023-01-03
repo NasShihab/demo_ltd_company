@@ -1,7 +1,6 @@
 # Demo Company Limited
 
 #Some ScreenShot (progress)
-[comment]: <> (Test Comment)
 
 #SCREENS
 

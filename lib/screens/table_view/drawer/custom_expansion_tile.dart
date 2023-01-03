@@ -22,45 +22,57 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
               tileColor: select == expansionTile[index].item
                   ? Colors.teal[50]
                   : Colors.white,
-              child: ExpansionTile(
-                onExpansionChanged: (bool selected) {
-                  setState(() {
-                    if (selected == true) {
-                      select = expansionTile[index].item;
-                    } else {
-                      select = 0;
-                    }
-                  });
-                },
-                childrenPadding: const EdgeInsets.only(right: 15),
-                leading: Icon(
-                  expansionTile[index].icon,
-                  color: myTeal,
-                  size: 22,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: ExpansionTile(
+                  onExpansionChanged: (bool selected) {
+                    setState(() {
+                      if (selected == true) {
+                        select = expansionTile[index].item;
+                      } else {
+                        select = 0;
+                      }
+                    });
+                  },
+                  childrenPadding: const EdgeInsets.only(right: 15),
+                  leading: Icon(
+                    expansionTile[index].icon,
+                    color: select == expansionTile[index].item
+                        ? myTeal
+                        : Colors.grey[700],
+                    size: 22,
+                  ),
+                  title: Text(
+                    expansionTile[index].title,
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: select == expansionTile[index].item
+                            ? myTeal
+                            : Colors.grey[700]),
+                  ),
+                  children: [
+                    Wrap(
+                      spacing: 15,
+                      direction: Axis.vertical,
+                      children: List.generate(
+                          purchase.length,
+                          // length,
+                          (index) => Text(
+                                purchase[index],
+                                style: TextStyle(fontSize: 16, color: myTeal),
+                              )),
+                    )
+                  ],
                 ),
-                title: Text(
-                  expansionTile[index].title,
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: select == expansionTile[index].item
-                          ? myTeal
-                          : Colors.grey[700]),
-                ),
-                children: [
-                  Wrap(
-                    spacing: 15,
-                    direction: Axis.vertical,
-                    children: List.generate(
-                      purchase.length,
-                      // length,
-                      (index) => Text(
-                        purchase[index],
-                        style: TextStyle(fontSize: 16, color: myTeal),
-                      ),
-                    ),
-                  )
-                ],
               ),
             ));
   }
 }
+
+List<String> purchase = [
+  'Purchase List',
+  'Order List',
+  'Vat List',
+  'Product Unit',
+  'Purchase Report'
+];
